@@ -4,5 +4,9 @@
     <string name="format_footer">%1$s - %2$s</string>
     <string name="hint_search">Search</string>
     <string name="label_comment">Comment</string>
+    <string name="label_search_news">Search News</string>
     <string name="title_recommendation_for_you">Recommendation For You</string>
+    <string name="label_home">Home</string>
+    <string name="label_recommendation">Recommendation</string>
+    <string name="label_saved">Saved</string>
 </resources>

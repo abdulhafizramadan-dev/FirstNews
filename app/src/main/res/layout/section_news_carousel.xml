@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kennyc.view.MultiStateView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/msv_carousel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:msv_loadingView="@layout/placeholder_news_carousel">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_carousel"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:clipToPadding="true"/>
+
+</com.kennyc.view.MultiStateView>
