@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp") version "1.9.21-1.0.15"
 }
 
@@ -70,6 +71,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation("com.github.haroldadmin:NetworkResponseAdapter:5.0.0")
+
+    implementation("androidx.webkit:webkit:1.10.0")
 
     debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")

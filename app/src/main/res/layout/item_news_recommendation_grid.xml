@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="190dp"
     android:background="?attr/colorSurface">
 
     <LinearLayout
@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/iv_photo"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars"
             tools:ignore="ContentDescription" />
@@ -31,6 +31,5 @@
             tools:text="The Trial Over Bitcoin’s True Creator Is in Session" />
 
     </LinearLayout>
-
 
 </com.google.android.material.card.MaterialCardView>

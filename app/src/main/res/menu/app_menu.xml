@@ -3,12 +3,7 @@
     <item android:id="@+id/latestFragment"
         android:icon="@drawable/ic_home"
         android:title="@string/label_home" />
-
     <item android:id="@+id/recommendationFragment"
         android:icon="@drawable/ic_recommendation"
         android:title="@string/label_recommendation" />
-
-    <item android:id="@+id/saveFragment"
-        android:icon="@drawable/ic_saved"
-        android:title="@string/label_saved" />
 </menu>

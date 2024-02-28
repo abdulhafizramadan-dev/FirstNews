@@ -80,8 +80,7 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
             label = "The Most Comment News",
             news = viewModel.getGeneralRecommendation(),
             onMovieClickListener = this
-        )
-        )
+        ))
     }
 
     private fun initHealthRecommendation() {

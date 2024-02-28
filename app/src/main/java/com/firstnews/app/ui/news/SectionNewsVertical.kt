@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import com.firstnews.app.R
 import com.firstnews.app.databinding.SectionNewsVerticalBinding
 import com.firstnews.app.domain.model.News
+import com.firstnews.app.domain.model.NewsCategory
 import com.firstnews.app.domain.model.Resource
 import com.firstnews.app.ui.listener.OnMovieClickListener
 import com.firstnews.app.util.showContent
@@ -18,6 +19,7 @@ class SectionNewsVertical(
     private val owner: LifecycleOwner,
     private val label: String,
     private val news: LiveData<Resource<List<News>>>,
+    private val onSeeAllClick: () -> Unit,
     private val onMovieClickListener: OnMovieClickListener
 ) : BindableItem<SectionNewsVerticalBinding>() {
 
@@ -30,7 +32,13 @@ class SectionNewsVertical(
     override fun initializeViewBinding(view: View): SectionNewsVerticalBinding = SectionNewsVerticalBinding.bind(view)
 
     override fun bind(viewBinding: SectionNewsVerticalBinding, position: Int) {
+        initView(viewBinding)
         initObserver(viewBinding)
+    }
+
+    private fun initView(binding: SectionNewsVerticalBinding) {
+        binding.tvLabel.text = label
+        binding.btnSeeAll.setOnClickListener { onSeeAllClick() }
     }
 
     private fun initObserver(binding: SectionNewsVerticalBinding) {
@@ -48,7 +56,6 @@ class SectionNewsVertical(
                     groupieAdapter.clear()
                     groupieAdapter.addAll(newsVerticalItems)
                     binding.msvVerticalNews.showContent()
-                    binding.tvLabel.text = label
                     binding.rvNewsVertical.adapter = groupieAdapter
                     Toast.makeText(context, resource.error.message, Toast.LENGTH_SHORT).show()
                 }
@@ -62,7 +69,6 @@ class SectionNewsVertical(
                     groupieAdapter.clear()
                     groupieAdapter.addAll(newsVerticalItems)
                     binding.msvVerticalNews.showContent()
-                    binding.tvLabel.text = label
                     binding.rvNewsVertical.adapter = groupieAdapter
                 }
             }
