@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">First News</string>
+    <string name="desc_save">Save</string>
+    <string name="format_footer">%1$s - %2$s</string>
+    <string name="hint_search">Search</string>
+    <string name="label_comment">Comment</string>
+    <string name="title_recommendation_for_you">Recommendation For You</string>
+</resources>
