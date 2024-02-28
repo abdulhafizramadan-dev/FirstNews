@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.firstnews.app.presentation.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
     <fragment
         android:id="@+id/recommendationFragment"
         android:name="com.firstnews.app.presentation.recommendation.RecommendationFragment"
@@ -18,4 +22,9 @@
         android:id="@+id/searchActivity"
         android:name="com.firstnews.app.presentation.search.SearchActivity"
         android:label="SearchActivity" />
+    <activity
+        android:id="@+id/detailActivity"
+        android:name="com.firstnews.app.presentation.detail.DetailActivity"
+        android:label="activity_detail"
+        tools:layout="@layout/activity_detail" />
 </navigation>

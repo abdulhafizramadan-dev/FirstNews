@@ -1,5 +1,6 @@
 package com.firstnews.app.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +13,14 @@ import com.firstnews.app.databinding.FragmentHomeBinding
 import com.firstnews.app.domain.model.News
 import com.firstnews.app.domain.model.NewsCategory
 import com.firstnews.app.domain.model.NewsType
+import com.firstnews.app.presentation.detail.DetailActivity
 import com.firstnews.app.ui.listener.OnMovieClickListener
 import com.firstnews.app.ui.news.SectionNewsByComment
 import com.firstnews.app.ui.news.SectionNewsCarousel
 import com.firstnews.app.ui.news.SectionNewsHorizontal
 import com.firstnews.app.ui.news.SectionNewsRecommendationGrid
 import com.firstnews.app.ui.news.SectionNewsVertical
+import com.firstnews.app.util.navigateToDetailActivity
 import com.xwray.groupie.GroupieAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -44,11 +47,11 @@ class HomeFragment : Fragment(), OnMovieClickListener {
 
         initToolbar()
         initRvLatest()
-        initAndroidContent()
-        initIndonesiaContent()
-        initSamsungContent()
-        initProgrammingContent()
-        initGeneralContent()
+//        initAndroidContent()
+//        initIndonesiaContent()
+//        initSamsungContent()
+//        initProgrammingContent()
+//        initGeneralContent()
 
         binding.rvLatest.adapter = groupieAdapter
     }
@@ -125,11 +128,11 @@ class HomeFragment : Fragment(), OnMovieClickListener {
             label = "The Most Comment News",
             news = viewModel.getHeadlineNews(category = NewsCategory.General),
             onMovieClickListener = this
-        )
-        )
+        ))
     }
 
     override fun onMovieClick(news: News) {
+        context?.navigateToDetailActivity(news)
     }
 
     override fun onSaveMovieClick(news: News) {

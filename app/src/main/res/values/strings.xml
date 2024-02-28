@@ -10,4 +10,6 @@
     <string name="label_recommendation">Recommendation</string>
     <string name="label_saved">Saved</string>
     <string name="label_see_all">See All</string>
+    <string name="desc_share">Share</string>
+    <string name="send_to">Sent to</string>
 </resources>
