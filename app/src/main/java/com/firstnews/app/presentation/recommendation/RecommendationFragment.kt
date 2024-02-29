@@ -60,9 +60,9 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
             owner = viewLifecycleOwner,
             label = "Entertainment Recommendation",
             news = viewModel.getTechnologyRecommendation(),
-            onClick = ::onMovieClick
-        )
-        )
+            onMovieClickListener = this,
+            onSeeAllClick = {}
+        ))
     }
 
     private fun initSportRecommendation() {
@@ -79,7 +79,8 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
             owner = viewLifecycleOwner,
             label = "The Most Comment News",
             news = viewModel.getGeneralRecommendation(),
-            onMovieClickListener = this
+            onMovieClickListener = this,
+            onSeeAllClick = {}
         ))
     }
 

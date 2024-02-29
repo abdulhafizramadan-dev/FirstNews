@@ -8,10 +8,9 @@ import coil.load
 import com.firstnews.app.R
 import com.firstnews.app.databinding.ItemNewsRecommendationGridBinding
 import com.firstnews.app.domain.model.News
+import com.firstnews.app.ui.listener.OnMovieClickListener
 
-class NewsRecommendationAdapter : ListAdapter<News, NewsRecommendationAdapter.NewsRecommendationViewHolder>(
-    NewsComparator
-) {
+class NewsRecommendationAdapter(private val onMovieClickListener: OnMovieClickListener) : ListAdapter<News, NewsRecommendationAdapter.NewsRecommendationViewHolder>(NewsComparator) {
 
     inner class NewsRecommendationViewHolder(
         private val binding: ItemNewsRecommendationGridBinding
@@ -24,6 +23,7 @@ class NewsRecommendationAdapter : ListAdapter<News, NewsRecommendationAdapter.Ne
                     error(R.drawable.img_placeholder_small)
                     crossfade(true)
                 }
+                root.setOnClickListener { onMovieClickListener.onMovieClick(news) }
             }
         }
     }

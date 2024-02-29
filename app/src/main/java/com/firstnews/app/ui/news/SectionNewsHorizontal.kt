@@ -16,6 +16,7 @@ import com.xwray.groupie.viewbinding.BindableItem
 class SectionNewsHorizontal(
     private val owner: LifecycleOwner,
     private val label: String,
+    private val onSeeAllClick: () -> Unit,
     private val news: LiveData<Resource<List<News>>>,
     private val onClick: (News) -> Unit
 ) : BindableItem<SectionNewsHorizontalBinding>() {
@@ -43,9 +44,12 @@ class SectionNewsHorizontal(
                     }
                     groupieAdapter.clear()
                     groupieAdapter.addAll(newsCarouselItems)
-                    binding.msvHorizontalNews.showContent()
-                    binding.tvLabel.text = label
-                    binding.rvNewsHorizontal.adapter = groupieAdapter
+                    with(binding) {
+                        tvLabel.text = label
+                        btnSeeAll.setOnClickListener { onSeeAllClick() }
+                        rvNewsHorizontal.adapter = groupieAdapter
+                        msvHorizontalNews.showContent()
+                    }
                 }
                 is Resource.Error -> {
                     val newsCarouselItems = resource.data?.map { news ->
@@ -53,9 +57,12 @@ class SectionNewsHorizontal(
                     } ?: emptyList()
                     groupieAdapter.clear()
                     groupieAdapter.addAll(newsCarouselItems)
-                    binding.msvHorizontalNews.showContent()
-                    binding.tvLabel.text = label
-                    binding.rvNewsHorizontal.adapter = groupieAdapter
+                    with(binding) {
+                        tvLabel.text = label
+                        btnSeeAll.setOnClickListener { onSeeAllClick() }
+                        rvNewsHorizontal.adapter = groupieAdapter
+                        msvHorizontalNews.showContent()
+                    }
                     Toast.makeText(context, resource.error.message, Toast.LENGTH_SHORT).show()
                 }
             }

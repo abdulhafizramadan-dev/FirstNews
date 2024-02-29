@@ -1,19 +1,15 @@
 package com.firstnews.app.presentation.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.firstnews.app.R
 import com.firstnews.app.databinding.FragmentHomeBinding
 import com.firstnews.app.domain.model.News
 import com.firstnews.app.domain.model.NewsCategory
-import com.firstnews.app.domain.model.NewsType
-import com.firstnews.app.presentation.detail.DetailActivity
 import com.firstnews.app.ui.listener.OnMovieClickListener
 import com.firstnews.app.ui.news.SectionNewsByComment
 import com.firstnews.app.ui.news.SectionNewsCarousel
@@ -21,6 +17,8 @@ import com.firstnews.app.ui.news.SectionNewsHorizontal
 import com.firstnews.app.ui.news.SectionNewsRecommendationGrid
 import com.firstnews.app.ui.news.SectionNewsVertical
 import com.firstnews.app.util.navigateToDetailActivity
+import com.firstnews.app.util.navigateToListActivity
+import com.firstnews.app.util.navigateToSearchActivity
 import com.xwray.groupie.GroupieAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,11 +45,12 @@ class HomeFragment : Fragment(), OnMovieClickListener {
 
         initToolbar()
         initRvLatest()
-//        initAndroidContent()
-//        initIndonesiaContent()
-//        initSamsungContent()
-//        initProgrammingContent()
-//        initGeneralContent()
+        initTechnologyNews()
+        initSportsNews()
+        initBusinessNews()
+        initHealthNews()
+        initGeneralNews()
+        initScienceNews()
 
         binding.rvLatest.adapter = groupieAdapter
     }
@@ -64,6 +63,7 @@ class HomeFragment : Fragment(), OnMovieClickListener {
     private fun initToolbar() {
         binding.toolbar.setOnMenuItemClickListener { menu ->
             if (menu.itemId == R.id.action_search) {
+                context?.navigateToSearchActivity()
             }
             true
         }
@@ -79,56 +79,71 @@ class HomeFragment : Fragment(), OnMovieClickListener {
         ))
     }
 
-    private fun initAndroidContent() {
+    private fun initTechnologyNews() {
         groupieAdapter.add(1,
             SectionNewsHorizontal(
                 owner = requireActivity(),
                 label = "Technology News",
                 news = viewModel.getHeadlineNews(category = NewsCategory.Technology),
-                onClick = ::onMovieClick
+                onClick = ::onMovieClick,
+                onSeeAllClick = { context?.navigateToListActivity(NewsCategory.Technology) }
             )
         )
     }
 
-    private fun initIndonesiaContent() {
+    private fun initSportsNews() {
         groupieAdapter.add(2,
             SectionNewsVertical(
                 owner = requireActivity(),
                 label = "Sports News",
                 news = viewModel.getHeadlineNews(category = NewsCategory.Sports),
                 onMovieClickListener = this,
-                onSeeAllClick = { }
+                onSeeAllClick = { context?.navigateToListActivity(NewsCategory.Sports) }
             )
         )
     }
 
-    private fun initSamsungContent() {
+    private fun initBusinessNews() {
         groupieAdapter.add(3, SectionNewsRecommendationGrid(
             owner = viewLifecycleOwner,
             label = "Business News",
             news = viewModel.getHeadlineNews(category = NewsCategory.Business, pageSize = 4),
-            onClick = ::onMovieClick
+            onMovieClickListener = this,
+            onSeeAllClick = { context?.navigateToListActivity(NewsCategory.Business) }
         ))
     }
 
-    private fun initProgrammingContent() {
+    private fun initHealthNews() {
         groupieAdapter.add(4,
             SectionNewsVertical(
                 owner = requireActivity(),
                 label = "Health News",
                 news = viewModel.getHeadlineNews(category = NewsCategory.Health),
                 onMovieClickListener = this,
-                onSeeAllClick = { }
+                onSeeAllClick = { context?.navigateToListActivity(NewsCategory.Health) }
             ))
     }
 
-    private fun initGeneralContent() {
+    private fun initGeneralNews() {
         groupieAdapter.add(5, SectionNewsByComment(
             owner = viewLifecycleOwner,
             label = "The Most Comment News",
             news = viewModel.getHeadlineNews(category = NewsCategory.General),
-            onMovieClickListener = this
+            onMovieClickListener = this,
+            onSeeAllClick = { context?.navigateToListActivity(NewsCategory.General) }
         ))
+    }
+
+    private fun initScienceNews() {
+        groupieAdapter.add(6,
+            SectionNewsVertical(
+                owner = requireActivity(),
+                label = "Science News",
+                news = viewModel.getHeadlineNews(category = NewsCategory.Science),
+                onMovieClickListener = this,
+                onSeeAllClick = { context?.navigateToListActivity(NewsCategory.Science) }
+            )
+        )
     }
 
     override fun onMovieClick(news: News) {

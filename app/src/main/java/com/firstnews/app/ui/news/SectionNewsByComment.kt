@@ -16,6 +16,7 @@ import com.xwray.groupie.viewbinding.BindableItem
 class SectionNewsByComment(
     private val owner: LifecycleOwner,
     private val label: String,
+    private val onSeeAllClick: () -> Unit,
     private val news: LiveData<Resource<List<News>>>,
     private val onMovieClickListener: OnMovieClickListener
 ) : BindableItem<SectionNewsByCommentBinding>() {
@@ -42,9 +43,12 @@ class SectionNewsByComment(
                     } ?: emptyList()
                     groupieAdapter.clear()
                     groupieAdapter.addAll(newsByCommentItems)
-                    binding.tvLabel.text = label
-                    binding.msvVerticalNews.showContent()
-                    binding.rvNewsVertical.adapter = groupieAdapter
+                    with(binding) {
+                        msvVerticalNews.showContent()
+                        tvLabel.text = label
+                        btnSeeAll.setOnClickListener { onSeeAllClick() }
+                        rvNewsVertical.adapter = groupieAdapter
+                    }
                 }
                 is Resource.Success -> {
                     val newsByCommentItems = resource.data.map { news ->
@@ -52,9 +56,12 @@ class SectionNewsByComment(
                     }
                     groupieAdapter.clear()
                     groupieAdapter.addAll(newsByCommentItems)
-                    binding.tvLabel.text = label
-                    binding.msvVerticalNews.showContent()
-                    binding.rvNewsVertical.adapter = groupieAdapter
+                    with(binding) {
+                        msvVerticalNews.showContent()
+                        tvLabel.text = label
+                        btnSeeAll.setOnClickListener { onSeeAllClick() }
+                        rvNewsVertical.adapter = groupieAdapter
+                    }
                 }
             }
         }

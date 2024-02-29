@@ -11,6 +11,7 @@ import com.firstnews.app.domain.model.News
 import com.firstnews.app.domain.model.Resource
 import com.firstnews.app.ui.adapter.NewsRecommendationAdapter
 import com.firstnews.app.ui.decoration.GridSpacingItemDecoration
+import com.firstnews.app.ui.listener.OnMovieClickListener
 import com.firstnews.app.util.showContent
 import com.firstnews.app.util.showLoading
 import com.xwray.groupie.viewbinding.BindableItem
@@ -18,8 +19,9 @@ import com.xwray.groupie.viewbinding.BindableItem
 class SectionNewsRecommendationGrid(
     private val owner: LifecycleOwner,
     private val label: String,
+    private val onSeeAllClick: () -> Unit,
     private val news: LiveData<Resource<List<News>>>,
-    private val onClick: (News) -> Unit
+    private val onMovieClickListener: OnMovieClickListener
 ) : BindableItem<SectionNewsRecommendationGridBinding>() {
 
     private lateinit var newsRecommendationAdapter: NewsRecommendationAdapter
@@ -34,7 +36,7 @@ class SectionNewsRecommendationGrid(
     }
 
     private fun initRecyclerView(binding: SectionNewsRecommendationGridBinding) {
-        newsRecommendationAdapter = NewsRecommendationAdapter()
+        newsRecommendationAdapter = NewsRecommendationAdapter(onMovieClickListener)
         val context = binding.root.context
         val spacingInPixel = context.resources.getDimensionPixelSize(R.dimen._16dp)
         val gridLayoutManager = GridLayoutManager(binding.root.context, 2)
@@ -53,15 +55,21 @@ class SectionNewsRecommendationGrid(
                 Resource.Loading -> binding.msvNewsRecommendationGrid.showLoading()
                 is Resource.Success -> {
                     newsRecommendationAdapter.submitList(resource.data)
-                    binding.msvNewsRecommendationGrid.showContent()
-                    binding.tvLabel.text = label
-                    binding.rvNewsRecommendationGrid.adapter = newsRecommendationAdapter
+                    with(binding) {
+                        msvNewsRecommendationGrid.showContent()
+                        tvLabel.text = label
+                        btnSeeAll.setOnClickListener { onSeeAllClick() }
+                        rvNewsRecommendationGrid.adapter = newsRecommendationAdapter
+                    }
                 }
                 is Resource.Error -> {
                     newsRecommendationAdapter.submitList(resource.data)
-                    binding.msvNewsRecommendationGrid.showContent()
-                    binding.tvLabel.text = label
-                    binding.rvNewsRecommendationGrid.adapter = newsRecommendationAdapter
+                    with(binding) {
+                        msvNewsRecommendationGrid.showContent()
+                        tvLabel.text = label
+                        btnSeeAll.setOnClickListener { onSeeAllClick() }
+                        rvNewsRecommendationGrid.adapter = newsRecommendationAdapter
+                    }
                     Toast.makeText(context, resource.error.message, Toast.LENGTH_SHORT).show()
                 }
             }
