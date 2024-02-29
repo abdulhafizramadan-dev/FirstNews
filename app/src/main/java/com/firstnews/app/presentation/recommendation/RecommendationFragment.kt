@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.firstnews.app.databinding.FragmentRecommendationBinding
 import com.firstnews.app.domain.model.News
+import com.firstnews.app.domain.model.NewsCategory
 import com.firstnews.app.ui.listener.OnMovieClickListener
 import com.firstnews.app.ui.news.SectionNewsByComment
 import com.firstnews.app.ui.news.SectionNewsRecommendationGrid
 import com.firstnews.app.ui.news.SectionNewsRecommendationVertical
+import com.firstnews.app.util.navigateToDetailActivity
+import com.firstnews.app.util.navigateToListActivity
 import com.xwray.groupie.GroupieAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -61,7 +63,9 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
             label = "Entertainment Recommendation",
             news = viewModel.getTechnologyRecommendation(),
             onMovieClickListener = this,
-            onSeeAllClick = {}
+            onSeeAllClick = {
+                context?.navigateToListActivity(NewsCategory.Technology)
+            }
         ))
     }
 
@@ -80,7 +84,7 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
             label = "The Most Comment News",
             news = viewModel.getGeneralRecommendation(),
             onMovieClickListener = this,
-            onSeeAllClick = {}
+            onSeeAllClick = { context?.navigateToListActivity(NewsCategory.General) }
         ))
     }
 
@@ -99,11 +103,9 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
     }
 
     override fun onMovieClick(news: News) {
-
+        context?.navigateToDetailActivity(news)
     }
 
-    override fun onSaveMovieClick(news: News) {
-        Toast.makeText(context, "Not yet implement!", Toast.LENGTH_SHORT).show()
-    }
+    override fun onSaveMovieClick(news: News) {}
 
 }
