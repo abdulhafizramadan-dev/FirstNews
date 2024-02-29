@@ -15,6 +15,7 @@ import com.firstnews.app.data.local.FirstNewsDatabase
 import com.firstnews.app.data.mapper.toDomain
 import com.firstnews.app.data.mapper.toDomains
 import com.firstnews.app.data.mapper.toNewsEntities
+import com.firstnews.app.data.paging.HeadlineNewsPagingSource
 import com.firstnews.app.data.paging.NewsPagingSource
 import com.firstnews.app.data.remote.service.NewsApiService
 import com.firstnews.app.domain.model.News
@@ -84,6 +85,19 @@ class NewsRepositoryImpl(
                 emit(Resource.Error(error = error, data = headlineNewsDomain))
             }
         }
+    }
+
+    override fun getHeadlineNews(
+        category: NewsCategory,
+        country: String,
+        apiKey: String
+    ): LiveData<PagingData<News>> = wrapEspressoIdlingResource {
+        Pager(
+            config = PagingConfig(pageSize = 20),
+            pagingSourceFactory = {
+                HeadlineNewsPagingSource(apiService, category, country, apiKey)
+            }
+        ).liveData
     }
 
     override fun getNewsByType(

@@ -4,6 +4,7 @@ import android.app.Application
 import com.firstnews.app.di.dataModule
 import com.firstnews.app.di.domainModule
 import com.firstnews.app.di.homeModule
+import com.firstnews.app.di.listModule
 import com.firstnews.app.di.recommendationModule
 import com.firstnews.app.di.searchModule
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +20,8 @@ class FirstNewsComApplication : Application() {
                 dataModule,
                 homeModule,
                 recommendationModule,
-                searchModule
+                searchModule,
+                listModule
             )
         }
     }

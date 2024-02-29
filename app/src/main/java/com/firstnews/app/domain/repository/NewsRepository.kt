@@ -18,6 +18,12 @@ interface NewsRepository {
         apiKey: String,
     ): LiveData<Resource<List<News>>>
 
+    fun getHeadlineNews(
+        category: NewsCategory = NewsCategory.None,
+        country: String = "",
+        apiKey: String,
+    ): LiveData<PagingData<News>>
+
     fun getNews(
         query: String,
         apiKey: String

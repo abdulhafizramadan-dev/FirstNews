@@ -22,6 +22,14 @@ class NewsInteractor(private val repository: NewsRepository) : NewsUseCase {
         return repository.getHeadlineNews(category, country, page, pageSize, apiKey)
     }
 
+    override fun getHeadlineNews(
+        category: NewsCategory,
+        country: String,
+        apiKey: String
+    ): LiveData<PagingData<News>> {
+        return repository.getHeadlineNews(category, country, apiKey)
+    }
+
     override fun getNews(query: String, apiKey: String): Flow<PagingData<News>> {
         return repository.getNews(query, apiKey)
     }
