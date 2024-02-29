@@ -12,4 +12,6 @@
     <string name="label_see_all">See All</string>
     <string name="desc_share">Share</string>
     <string name="send_to">Sent to</string>
+    <string name="label_error_load_news">There is some problem!</string>
+    <string name="label_try_again">Try Again</string>
 </resources>

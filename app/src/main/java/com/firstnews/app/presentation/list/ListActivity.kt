@@ -2,11 +2,14 @@ package com.firstnews.app.presentation.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.firstnews.app.R
 import com.firstnews.app.databinding.ActivityListBinding
+import com.firstnews.app.databinding.ErrorLoadNewsBinding
 import com.firstnews.app.domain.model.News
 import com.firstnews.app.domain.model.NewsCategory
 import com.firstnews.app.ui.adapter.NewsFooterAdapter
@@ -15,7 +18,10 @@ import com.firstnews.app.ui.listener.OnMovieClickListener
 import com.firstnews.app.util.navigateToDetailActivity
 import com.firstnews.app.util.navigateToSearchActivity
 import com.firstnews.app.util.showContent
+import com.firstnews.app.util.showError
 import com.firstnews.app.util.showLoading
+import com.kennyc.view.MultiStateView
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -73,8 +79,19 @@ class ListActivity : AppCompatActivity(), OnMovieClickListener {
         lifecycleScope.launch {
             newsAdapter.loadStateFlow.collectLatest { loadState ->
                 val isLoading = loadState.refresh is LoadState.Loading
+                val isError = loadState.refresh is LoadState.Error
                 if (isLoading) {
                     binding.msvList.showLoading()
+                    return@collectLatest
+                }
+                if (isError) {
+                    delay(1000L)
+                    binding.msvList.showError()
+                    val errorView = binding.msvList.getView(MultiStateView.ViewState.ERROR)
+                    val btnTryAgain = errorView?.findViewById<Button>(R.id.btn_try_again)
+                    btnTryAgain?.setOnClickListener {
+                        initObserver()
+                    }
                     return@collectLatest
                 }
                 binding.msvList.showContent()

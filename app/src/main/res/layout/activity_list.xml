@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:msv_loadingView="@layout/placeholder_search_news"
+        app:msv_errorView="@layout/error_load_news"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list"

@@ -74,6 +74,8 @@ dependencies {
 
     implementation("androidx.webkit:webkit:1.10.0")
 
+    implementation("com.airbnb.android:lottie:6.1.0")
+
     debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
 
