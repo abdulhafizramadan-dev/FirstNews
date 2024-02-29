@@ -4,11 +4,14 @@ import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.firstnews.app.data.NewsRepositoryImpl
+import com.firstnews.app.data.SavedNewsRepositoryImpl
 import com.firstnews.app.data.local.FirstNewsDatabase
 import com.firstnews.app.data.remote.service.NewsApiService
 import com.firstnews.app.domain.repository.NewsRepository
+import com.firstnews.app.domain.repository.SavedNewsRepository
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import okhttp3.OkHttpClient
+import org.koin.core.scope.get
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -48,4 +51,5 @@ val dataModule = module {
     single<NewsRepository> {
         NewsRepositoryImpl(get(), get())
     }
+    single<SavedNewsRepository> { SavedNewsRepositoryImpl(get<FirstNewsDatabase>().savedNewsDao) }
 }

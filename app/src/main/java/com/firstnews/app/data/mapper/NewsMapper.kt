@@ -1,6 +1,7 @@
 package com.firstnews.app.data.mapper
 
 import com.firstnews.app.data.local.entity.NewsEntity
+import com.firstnews.app.data.local.entity.SavedNewsEntity
 import com.firstnews.app.data.remote.response.NewsResponse
 import com.firstnews.app.domain.model.News
 import com.firstnews.app.domain.model.NewsCategory
@@ -45,6 +46,7 @@ fun NewsEntity.toDomain(): News =
         source = source
     )
 
+
 /**
  * Mapper from NewsResponse to News Domain
  */
@@ -62,4 +64,33 @@ fun NewsResponse.toDomain(): News =
         publishedAt = publishedAt ?: "",
         author = author ?: "",
         source = source?.name ?: ""
+    )
+
+
+/**
+ * Mapper from NewsEntity to SavedNewsEntity
+ */
+
+fun News.toSavedNewsEntity(): SavedNewsEntity =
+    SavedNewsEntity(
+        urlToImage = urlToImage,
+        title = title,
+        url = url,
+        publishedAt = publishedAt,
+        author = author,
+        source = source
+    )
+
+fun List<SavedNewsEntity>.toNewsDomains(): List<News> = map {
+    it.toNewsDomain()
+}
+
+fun SavedNewsEntity.toNewsDomain(): News =
+    News(
+        urlToImage = urlToImage,
+        title = title,
+        url = url,
+        publishedAt = publishedAt,
+        author = author,
+        source = source
     )

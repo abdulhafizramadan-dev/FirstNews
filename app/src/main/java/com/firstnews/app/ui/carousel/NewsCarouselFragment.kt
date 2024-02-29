@@ -65,9 +65,9 @@ class NewsCarouselFragment : Fragment() {
             cvCarousel.setOnClickListener {
                 onClickListener?.onMovieClick(news!!)
             }
-            btnSave.setOnClickListener {
-                onClickListener?.onSaveMovieClick(news!!)
-            }
+//            btnSave.setOnClickListener {
+//                onClickListener?.onSaveMovieClick(news!!)
+//            }
         }
     }
 

@@ -6,4 +6,7 @@
     <item android:id="@+id/recommendationFragment"
         android:icon="@drawable/ic_recommendation"
         android:title="@string/label_recommendation" />
+    <item android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/label_favorite" />
 </menu>

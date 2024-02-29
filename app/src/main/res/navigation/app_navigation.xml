@@ -27,4 +27,14 @@
         android:name="com.firstnews.app.presentation.detail.DetailActivity"
         android:label="activity_detail"
         tools:layout="@layout/activity_detail" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.firstnews.app.presentation.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <activity
+        android:id="@+id/listActivity"
+        android:name="com.firstnews.app.presentation.list.ListActivity"
+        android:label="activity_list"
+        tools:layout="@layout/activity_list" />
 </navigation>

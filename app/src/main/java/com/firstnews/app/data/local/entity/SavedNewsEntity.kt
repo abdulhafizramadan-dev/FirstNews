@@ -5,6 +5,12 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class SavedNewsEntity(
-    @PrimaryKey
-    val url: String = ""
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val url: String = "",
+    val urlToImage: String? = null,
+    val title: String = "",
+    val author: String = "",
+    val publishedAt: String = "",
+    val source: String = ""
 )

@@ -2,7 +2,9 @@ package com.firstnews.app
 
 import android.app.Application
 import com.firstnews.app.di.dataModule
+import com.firstnews.app.di.detailModule
 import com.firstnews.app.di.domainModule
+import com.firstnews.app.di.favoriteModule
 import com.firstnews.app.di.homeModule
 import com.firstnews.app.di.listModule
 import com.firstnews.app.di.recommendationModule
@@ -21,7 +23,9 @@ class FirstNewsComApplication : Application() {
                 homeModule,
                 recommendationModule,
                 searchModule,
-                listModule
+                listModule,
+                detailModule,
+                favoriteModule
             )
         }
     }

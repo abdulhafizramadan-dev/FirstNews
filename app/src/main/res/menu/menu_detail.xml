@@ -6,9 +6,4 @@
         android:title="@string/desc_share"
         app:iconTint="?colorOnBackground"
         app:showAsAction="ifRoom" />
-    <item android:id="@+id/action_save"
-        android:icon="@drawable/ic_save"
-        android:title="@string/desc_save"
-        app:iconTint="?colorOnBackground"
-        app:showAsAction="always" />
 </menu>
