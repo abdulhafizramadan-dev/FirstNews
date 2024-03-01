@@ -19,4 +19,5 @@
     <string name="label_favorite">Favorite</string>
     <string name="label_favorite_fragment">Your Favorite News</string>
     <string name="desc_btn_see_all_news_horizontal">Btn See All News Horizontal</string>
+    <string name="label_empty_favorite_news">There is not favorite news</string>
 </resources>

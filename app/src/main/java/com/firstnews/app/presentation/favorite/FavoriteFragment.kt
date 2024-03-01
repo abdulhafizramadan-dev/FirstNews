@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.map
 import com.firstnews.app.R
 import com.firstnews.app.databinding.FragmentFavoriteBinding
 import com.firstnews.app.domain.model.News
@@ -13,6 +14,8 @@ import com.firstnews.app.ui.adapter.NewsFooterAdapter
 import com.firstnews.app.ui.adapter.NewsPagingDataAdapter
 import com.firstnews.app.ui.listener.OnMovieClickListener
 import com.firstnews.app.util.navigateToDetailActivity
+import com.firstnews.app.util.showContent
+import com.firstnews.app.util.showEmpty
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -43,6 +46,7 @@ class FavoriteFragment : Fragment(), OnMovieClickListener {
         initAdapter()
         if (viewModel.isLoad.value == false) {
             initFavoriteNews()
+            initObserver()
         }
     }
 
@@ -62,12 +66,23 @@ class FavoriteFragment : Fragment(), OnMovieClickListener {
         }
     }
 
+    private fun initObserver() {
+        newsAdapter.addLoadStateListener { loadState ->
+            if (loadState.append.endOfPaginationReached ) {
+                if (newsAdapter.itemCount < 1) {
+                    binding.msvFavorite.showEmpty()
+                } else {
+                    binding.msvFavorite.showContent()
+                }
+            }
+        }
+    }
+
     override fun onMovieClick(news: News) {
         context?.navigateToDetailActivity(news)
     }
 
     override fun onSaveMovieClick(news: News) {
-        TODO("Not yet implemented")
     }
 
 }
