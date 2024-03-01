@@ -1,7 +1,7 @@
 package com.firstnews.app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.firstnews.app.databinding.ActivityMainBinding
@@ -18,10 +18,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
-
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-
-        }
 
     }
 }

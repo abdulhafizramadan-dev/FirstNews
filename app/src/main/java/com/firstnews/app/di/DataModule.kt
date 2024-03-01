@@ -9,6 +9,7 @@ import com.firstnews.app.data.local.FirstNewsDatabase
 import com.firstnews.app.data.remote.service.NewsApiService
 import com.firstnews.app.domain.repository.NewsRepository
 import com.firstnews.app.domain.repository.SavedNewsRepository
+import com.firstnews.app.util.ApiConfigUtil
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import okhttp3.OkHttpClient
 import org.koin.core.scope.get
@@ -32,7 +33,7 @@ val dataModule = module {
     }
     single<Retrofit> {
         Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
+            .baseUrl(ApiConfigUtil.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .client(get())

@@ -15,6 +15,7 @@ import com.firstnews.app.domain.model.News
 import com.firstnews.app.ui.adapter.NewsFooterAdapter
 import com.firstnews.app.ui.adapter.NewsPagingDataAdapter
 import com.firstnews.app.ui.listener.OnMovieClickListener
+import com.firstnews.app.util.navigateToDetailActivity
 import com.firstnews.app.util.showContent
 import com.firstnews.app.util.showError
 import com.firstnews.app.util.showLoading
@@ -105,6 +106,7 @@ class SearchActivity : AppCompatActivity(), OnMovieClickListener {
     }
 
     override fun onMovieClick(news: News) {
+        navigateToDetailActivity(news)
     }
 
     override fun onSaveMovieClick(news: News) {

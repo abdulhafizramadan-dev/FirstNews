@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.firstnews.app.data.mapper.toDomains
 import com.firstnews.app.data.remote.service.NewsApiService
 import com.firstnews.app.domain.model.News
+import com.firstnews.app.util.wrapEspressoIdlingResource
 import com.haroldadmin.cnradapter.NetworkResponse
 
 class NewsPagingSource(
@@ -13,30 +14,33 @@ class NewsPagingSource(
     private val apiKey: String
 ) : PagingSource<Int, News>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, News> {
-        return try {
-            val nextPageNumber = params.key ?: 1
-            val newsResponse = apiService.getEverything(
-                query = query,
-                page = nextPageNumber,
-                apiKey = apiKey,
-                pageSize = params.loadSize
-            )
-            when (newsResponse) {
-                is NetworkResponse.Success -> {
-                    val newsDomain = newsResponse.body.data?.toDomains() ?: emptyList()
-                    LoadResult.Page(
-                        data = newsDomain,
-                        prevKey = null,
-                        nextKey = nextPageNumber + 1
-                    )
+        return wrapEspressoIdlingResource {
+            try {
+                val nextPageNumber = params.key ?: 1
+                val newsResponse = apiService.getEverything(
+                    query = query,
+                    page = nextPageNumber,
+                    apiKey = apiKey,
+                    pageSize = params.loadSize
+                )
+                when (newsResponse) {
+                    is NetworkResponse.Success -> {
+                        val newsDomain = newsResponse.body.data?.toDomains() ?: emptyList()
+                        LoadResult.Page(
+                            data = newsDomain,
+                            prevKey = null,
+                            nextKey = nextPageNumber + 1
+                        )
+                    }
+                    is NetworkResponse.Error -> {
+                        val message = newsResponse.body?.message ?: newsResponse.error?.message
+                        LoadResult.Error(Throwable(message))
+                    }
                 }
-                is NetworkResponse.Error -> {
-                    val message = newsResponse.body?.message ?: newsResponse.error?.message
-                    LoadResult.Error(Throwable(message))
-                }
+            } catch (e: Exception) {
+                LoadResult.Error(e)
             }
-        } catch (e: Exception) {
-            LoadResult.Error(e)
+
         }
     }
 

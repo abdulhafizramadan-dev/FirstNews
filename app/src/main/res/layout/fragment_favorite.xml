@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="Your Favorite News"
+            app:title="@string/label_favorite_fragment"
             app:titleTextAppearance="@style/TextAppearance.Material3.HeadlineMedium"/>
 
     </com.google.android.material.appbar.AppBarLayout>

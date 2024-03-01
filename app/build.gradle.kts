@@ -36,6 +36,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    testOptions {
+        animationsDisabled = true
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -90,4 +93,19 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Special Instrumentation Testing
+    // InstantTaskExecutorRule
+    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
+    //TestCoroutineDispatcher
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    //launchFragmentInContainer
+    debugImplementation("androidx.fragment:fragment-testing:1.6.2")
+    //mock web server
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+    androidTestImplementation("com.squareup.okhttp3:okhttp-tls:4.9.3")
+
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:3.0.2")
+    // IntentsTestRule
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
 }

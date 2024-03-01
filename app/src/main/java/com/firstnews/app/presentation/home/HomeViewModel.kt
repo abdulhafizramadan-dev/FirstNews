@@ -14,7 +14,7 @@ class HomeViewModel(
         category: NewsCategory = NewsCategory.None,
         page: Int = 1,
         pageSize: Int = 6,
-        apiKey: String = "c5afeb28f0d4496bb06e0083836f80f7"
+        apiKey: String = "b8bd7756346948e597aca1d162f5ed76"
     ) = newsUseCase.getHeadlineNews(
         country = country,
         category = category,

@@ -15,15 +15,19 @@ import com.firstnews.app.data.mapper.toNewsDomains
 import com.firstnews.app.data.mapper.toSavedNewsEntity
 import com.firstnews.app.domain.model.News
 import com.firstnews.app.domain.repository.SavedNewsRepository
+import com.firstnews.app.util.wrapEspressoIdlingResource
 
 class SavedNewsRepositoryImpl(private val savedNewsDao: SavedNewsDao) : SavedNewsRepository {
 
     override fun getSavedNewsStream(): LiveData<PagingData<News>> {
-        return Pager(
-            config = PagingConfig(pageSize = 10),
-            pagingSourceFactory = { savedNewsDao.getSavedNewsStream() }
-        ).liveData.map { pagingData ->
-            pagingData.map { it.toNewsDomain() }
+        return wrapEspressoIdlingResource {
+            Pager(
+                config = PagingConfig(pageSize = 10),
+                pagingSourceFactory = { savedNewsDao.getSavedNewsStream() }
+            ).liveData.map { pagingData ->
+                pagingData.map { it.toNewsDomain() }
+            }
+
         }
     }
 

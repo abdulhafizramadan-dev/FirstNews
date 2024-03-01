@@ -17,4 +17,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_favorite">Favorite</string>
+    <string name="label_favorite_fragment">Your Favorite News</string>
+    <string name="desc_btn_see_all_news_horizontal">Btn See All News Horizontal</string>
 </resources>

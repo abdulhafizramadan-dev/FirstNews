@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="@string/label_see_all"
+            android:contentDescription="@string/desc_btn_see_all_news_horizontal"
             android:textAllCaps="false"
             android:textStyle="bold"
             android:textColor="?colorPrimary"
