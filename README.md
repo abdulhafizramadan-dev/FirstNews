@@ -3,7 +3,7 @@
 
 [Link Drive](https://drive.google.com/drive/folders/1FgolGybCnjn5MfFLQbpWWYhXxhjeaPa-?usp=sharing)
 
-[Demo Youtube](https://youtu.be/rPazALpmbKA)
+[Demo Youtube](https://youtu.be/gDxYQBGd0NQ)
 
 ## First News
 First News is a news portal application that uses the newsapi.org Public API, First News is built using Kotlin, XML and uses many other libraries such as Paging 3, Room, Coin Dependency Inject.
