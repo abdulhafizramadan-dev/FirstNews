@@ -8,34 +8,18 @@ class RecommendationViewModel(
     private val newsUseCase: NewsUseCase
 ) : ViewModel() {
 
-    fun getBusinessRecommendation(
-        page: Int = 1,
-        pageSize: Int = 10,
-        apiKey: String = "b8bd7756346948e597aca1d162f5ed76"
-    ) = newsUseCase.getHeadlineNews(category = NewsCategory.Business, country = "us", page = page, pageSize = pageSize, apiKey = apiKey)
-
-    fun getTechnologyRecommendation(
-        page: Int = 1,
-        pageSize: Int = 4,
-        apiKey: String = "b8bd7756346948e597aca1d162f5ed76"
-    ) = newsUseCase.getHeadlineNews(category = NewsCategory.Technology, country = "us", page = page, pageSize = pageSize, apiKey = apiKey)
-
-    fun getSportRecommendation(
-        page: Int = 1,
-        pageSize: Int = 10,
-        apiKey: String = "b8bd7756346948e597aca1d162f5ed76"
-    ) = newsUseCase.getHeadlineNews(category = NewsCategory.Sports, country = "us", page = page, pageSize = pageSize, apiKey = apiKey)
-
-    fun getGeneralRecommendation(
+    fun getHeadlineNews(
+        country: String = "us",
+        category: NewsCategory = NewsCategory.None,
         page: Int = 1,
         pageSize: Int = 6,
         apiKey: String = "b8bd7756346948e597aca1d162f5ed76"
-    ) = newsUseCase.getHeadlineNews(category = NewsCategory.General, country = "us", page = page, pageSize = pageSize, apiKey = apiKey)
-
-    fun getHealthRecommendation(
-        page: Int = 1,
-        pageSize: Int = 10,
-        apiKey: String = "b8bd7756346948e597aca1d162f5ed76"
-    ) = newsUseCase.getHeadlineNews(category = NewsCategory.Health, country = "us", page = page, pageSize = pageSize, apiKey = apiKey)
+    ) = newsUseCase.getHeadlineNews(
+        country = country,
+        category = category,
+        page = page,
+        pageSize = pageSize,
+        apiKey = apiKey
+    )
 
 }

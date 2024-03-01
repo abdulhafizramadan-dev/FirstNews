@@ -2,9 +2,6 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="MainActivityTest">
-        <State />
-      </entry>
       <entry key="MainActivityTestSeeAllContentFlow">
         <State />
       </entry>
@@ -12,12 +9,6 @@
         <State />
       </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="cLoadSeeAllScreen_Success()">
-        <State />
-      </entry>
-      <entry key="mainActivityTest2()">
         <State />
       </entry>
     </value>

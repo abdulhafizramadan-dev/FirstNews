@@ -51,7 +51,7 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
         groupieAdapter.add(0, SectionNewsRecommendationVertical(
             owner = viewLifecycleOwner,
             label = "Business Recommendation",
-            news = viewModel.getBusinessRecommendation(),
+            news = viewModel.getHeadlineNews(category = NewsCategory.Business, pageSize = 10),
             onMovieClickListener = this
         )
         )
@@ -61,7 +61,7 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
         groupieAdapter.add(1, SectionNewsRecommendationGrid(
             owner = viewLifecycleOwner,
             label = "Entertainment Recommendation",
-            news = viewModel.getTechnologyRecommendation(),
+            news = viewModel.getHeadlineNews(category = NewsCategory.Technology, pageSize = 4),
             onMovieClickListener = this,
             onSeeAllClick = {
                 context?.navigateToListActivity(NewsCategory.Technology)
@@ -73,7 +73,7 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
         groupieAdapter.add(2, SectionNewsRecommendationVertical(
             owner = viewLifecycleOwner,
             label = "Sport Recommendation",
-            news = viewModel.getSportRecommendation(),
+            news = viewModel.getHeadlineNews(category = NewsCategory.Sports, pageSize = 10),
             onMovieClickListener = this
         ))
     }
@@ -82,7 +82,7 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
         groupieAdapter.add(3, SectionNewsByComment(
             owner = viewLifecycleOwner,
             label = "The Most Comment News",
-            news = viewModel.getGeneralRecommendation(),
+            news = viewModel.getHeadlineNews(category = NewsCategory.Business, pageSize = 6),
             onMovieClickListener = this,
             onSeeAllClick = { context?.navigateToListActivity(NewsCategory.General) }
         ))
@@ -92,7 +92,7 @@ class RecommendationFragment : Fragment(), OnMovieClickListener {
         groupieAdapter.add(4, SectionNewsRecommendationVertical(
             owner = viewLifecycleOwner,
             label = "Health Recommendation",
-            news = viewModel.getHealthRecommendation(),
+            news = viewModel.getHeadlineNews(category = NewsCategory.Health, pageSize = 10),
             onMovieClickListener = this
         ))
     }

@@ -108,4 +108,10 @@ dependencies {
     androidTestImplementation("com.android.support.test.espresso:espresso-contrib:3.0.2")
     // IntentsTestRule
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+
+    // Special Unit Test
+    testImplementation("org.mockito:mockito-core:5.10.0")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
