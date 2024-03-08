@@ -8,7 +8,7 @@ import com.firstnews.app.domain.usecase.NewsUseCase
 class SearchViewModel(private val useCase: NewsUseCase) : ViewModel() {
 
     fun searchNews(query: String) = useCase
-        .searchNews(query = query, apiKey = "c5afeb28f0d4496bb06e0083836f80f7")
+        .searchNews(query = query, apiKey = "f9f466cbc2014d73a6f09567baceb26f")
         .cachedIn(viewModelScope)
 
 }

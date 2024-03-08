@@ -1,13 +1,11 @@
 package com.firstnews.app.presentation.favorite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.map
-import com.firstnews.app.R
 import com.firstnews.app.databinding.FragmentFavoriteBinding
 import com.firstnews.app.domain.model.News
 import com.firstnews.app.ui.adapter.NewsFooterAdapter
@@ -61,6 +59,7 @@ class FavoriteFragment : Fragment(), OnMovieClickListener {
     private fun initFavoriteNews() {
         viewModel.getSavedNews().observe(viewLifecycleOwner) {
             lifecycleScope.launch {
+                viewModel.setIsLoad(true)
                 newsAdapter.submitData(it)
             }
         }
